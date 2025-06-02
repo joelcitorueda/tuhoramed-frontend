@@ -1,6 +1,7 @@
-// src/pages/Tratamientos.tsx
 import { useEffect, useState } from "react";
 import api from "../api/axiosInstance";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import "../layouts/MainLayout.css";
 
 interface Tratamiento {
   idTratamiento: number;
@@ -29,9 +30,14 @@ export default function Tratamientos() {
   }, []);
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>Listado de Tratamientos</h2>
-      <table border={1} cellPadding={8}>
+    <div className="table-container">
+      <div className="search-box">
+        <h2>Listado de Tratamientos</h2>
+        <button className="btn-new" onClick={() => alert("Agregar nuevo tratamiento")}>
+          + Nuevo Tratamiento
+        </button>
+      </div>
+      <table className="data-table">
         <thead>
           <tr>
             <th>Paciente</th>
@@ -53,12 +59,14 @@ export default function Tratamientos() {
               <td>{t.duracion}</td>
               <td>{new Date(t.fechaInicio).toLocaleDateString()}</td>
               <td>
-                <button onClick={() => alert("Editar: " + t.idTratamiento)}>
-                  ✏️
-                </button>
-                <button onClick={() => alert("Eliminar: " + t.idTratamiento)}>
-                  🗑️
-                </button>
+                <div className="actions">
+                  <button className="btn-edit" onClick={() => alert("Editar: " + t.idTratamiento)}>
+                    <FaEdit />
+                  </button>
+                  <button className="btn-delete" onClick={() => alert("Eliminar: " + t.idTratamiento)}>
+                    <FaTrash />
+                  </button>
+                </div>
               </td>
             </tr>
           ))}
