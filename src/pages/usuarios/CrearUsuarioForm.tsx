@@ -43,7 +43,7 @@ export default function CrearUsuarioForm({ onClose }: { onClose: () => void }) {
       onClose();
     } catch (err: any) {
       console.error("Error al crear usuario:", err);
-      Swal.fire("Error", "Hubo un problema al crear el usuario", "error");
+      Swal.fire("Error", "Correo ya existente", "error");
     }
   };
 
@@ -59,7 +59,9 @@ export default function CrearUsuarioForm({ onClose }: { onClose: () => void }) {
           <select name="rol" onChange={handleChange} value={form.rol} required>
             <option value="">Seleccionar rol</option>
             <option value="admin">Admin</option>
-            <option value="usuario">Usuario</option>
+            <option value="medico">Medico</option>
+            <option value="cuidador">Cuidador</option>
+            <option value="paciente">Paciente</option>
           </select>
           <input name="contrasena" type="password" placeholder="Contraseña" onChange={handleChange} value={form.contrasena} required />
 
